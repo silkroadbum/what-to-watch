@@ -1,6 +1,12 @@
 import FilmCard from '../../components/film-card/film-card';
 
-function MainScreen() {
+type MainScreenProps = {
+  promoFilmName: string,
+  promoFilmGenre: string,
+  promoFilmYear: string
+}
+
+function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps) {
   return (
     <>
       <section className="film-card">
@@ -38,10 +44,10 @@ function MainScreen() {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{promoFilmName}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{promoFilmGenre}</span>
+                <span className="film-card__year">{promoFilmYear}</span>
               </p>
 
               <div className="film-card__buttons">
