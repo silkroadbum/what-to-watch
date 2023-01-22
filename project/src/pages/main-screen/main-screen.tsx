@@ -6,7 +6,7 @@ type MainScreenProps = {
   promoFilmYear: string
 }
 
-function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps) {
+function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
