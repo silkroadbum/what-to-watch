@@ -29,7 +29,7 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link" href="/">Sign out</a>
+              <Link className="user-block__link" to="/">Sign out</Link>
             </li>
           </ul>
         </header>

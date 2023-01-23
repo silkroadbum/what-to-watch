@@ -23,7 +23,7 @@ function FilmScreen(): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link" href="/">Sign out</a>
+                <Link className="user-block__link" to="/">Sign out</Link>
               </li>
             </ul>
           </header>
