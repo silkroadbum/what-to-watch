@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 
 function AddReviewScreen(): JSX.Element {
   return (
@@ -33,7 +34,7 @@ function AddReviewScreen(): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <Link className="user-block__link" to="/">Sign out</Link>
+              <Link className="user-block__link" to={AppRoute.Root}>Sign out</Link>
             </li>
           </ul>
         </header>

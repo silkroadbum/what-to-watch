@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 
 function MyListScreen(): JSX.Element {
   return (
@@ -16,7 +17,7 @@ function MyListScreen(): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <Link className="user-block__link" to="/">Sign out</Link>
+            <Link className="user-block__link" to={AppRoute.Root}>Sign out</Link>
           </li>
         </ul>
       </header>
@@ -112,7 +113,7 @@ function MyListScreen(): JSX.Element {
 
       <footer className="page-footer">
         <div className="logo">
-          <Link to="/" className="logo__link logo__link--light">
+          <Link to={AppRoute.Root} className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
