@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
 
 function AddReviewScreen(): JSX.Element {
+  const params = useParams();
+
+  // eslint-disable-next-line no-console
+  console.log(params);
+
   return (
     <section className="film-card film-card--full">
       <Helmet>
