@@ -32,7 +32,14 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear}: AppScreenProps): JS
           }
         />
         <Route path={AppRoute.Film} element={<FilmScreen/>}/>
-        <Route path={AppRoute.AddReview} element={<AddReviewScreen/>}/>
+        <Route
+          path={AppRoute.AddReview}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <AddReviewScreen/>
+            </PrivateRoute>
+          }
+        />
         <Route path={AppRoute.Player} element={<PlayerScreen/>}/>
         <Route path='*' element={<NotFoundScreen/>}/>
       </Routes>
