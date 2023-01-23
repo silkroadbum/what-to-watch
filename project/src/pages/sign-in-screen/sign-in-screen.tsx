@@ -8,7 +8,7 @@ function SignInScreen(): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
-        <title>What to watch. Залогиньтесь.</title>
+        <title>WTW. Залогиньтесь.</title>
       </Helmet>
       <header className="page-header user-page__head">
         <Logo/>

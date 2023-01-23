@@ -7,7 +7,7 @@ function NotFoundScreen(): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
-        <title>What to watch. Страница не найдена.</title>
+        <title>WTW. Страница не найдена.</title>
       </Helmet>
       <header className="page-header user-page__head">
         <Logo/>

@@ -8,7 +8,7 @@ function MyListScreen(): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
-        <title>What to watch. Избранные фильмы.</title>
+        <title>WTW. Избранные фильмы.</title>
       </Helmet>
       <header className="page-header user-page__head">
         <Logo/>

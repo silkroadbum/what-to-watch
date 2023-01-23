@@ -8,7 +8,7 @@ function FilmScreen(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>What to watch. Информация о фильме</title>
+        <title>WTW. Информация о фильме</title>
       </Helmet>
       <section className="film-card film-card--full">
         <div className="film-card__hero">

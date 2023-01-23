@@ -15,7 +15,7 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
   return (
     <>
       <Helmet>
-        <title>What to watch. Главная страница.</title>
+        <title>WTW. Главная страница.</title>
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">

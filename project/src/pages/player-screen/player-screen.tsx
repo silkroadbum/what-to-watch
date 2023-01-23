@@ -4,7 +4,7 @@ function PlayerScreen(): JSX.Element {
   return (
     <div className="player">
       <Helmet>
-        <title>What to watch. Видеоплеер.</title>
+        <title>WTW. Видеоплеер.</title>
       </Helmet>
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 

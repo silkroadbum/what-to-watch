@@ -8,7 +8,7 @@ function AddReviewScreen(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <Helmet>
-        <title>What to watch. Добавь отзыв фильму.</title>
+        <title>WTW. Добавь отзыв фильму.</title>
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
