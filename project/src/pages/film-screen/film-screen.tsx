@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../components/logo/logo';
@@ -6,6 +7,9 @@ import { AppRoute } from '../../const';
 function FilmScreen(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>What to watch. Информация о фильме</title>
+      </Helmet>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
 
@@ -19,31 +20,33 @@ type AppScreenProps = {
 
 function App({promoFilmName, promoFilmGenre, promoFilmYear}: AppScreenProps): JSX.Element {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Root} element={<MainScreen promoFilmName = {promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear}/>}/>
-        <Route path={AppRoute.Login} element={<SignInScreen/>}/>
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListScreen/>
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Film} element={<FilmScreen/>}/>
-        <Route
-          path={AppRoute.AddReview}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <AddReviewScreen/>
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Player} element={<PlayerScreen/>}/>
-        <Route path='*' element={<NotFoundScreen/>}/>
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path={AppRoute.Root} element={<MainScreen promoFilmName = {promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear}/>}/>
+          <Route path={AppRoute.Login} element={<SignInScreen/>}/>
+          <Route
+            path={AppRoute.MyList}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <MyListScreen/>
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.Film} element={<FilmScreen/>}/>
+          <Route
+            path={AppRoute.AddReview}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <AddReviewScreen/>
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.Player} element={<PlayerScreen/>}/>
+          <Route path='*' element={<NotFoundScreen/>}/>
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

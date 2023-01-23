@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 import FilmCard from '../../components/film-card/film-card';
@@ -13,6 +14,9 @@ type MainScreenProps = {
 function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>What to watch. Главная страница.</title>
+      </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />

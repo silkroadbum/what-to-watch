@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
@@ -5,6 +6,9 @@ import { AppRoute } from '../../const';
 function NotFoundScreen(): JSX.Element {
   return (
     <div className="user-page">
+      <Helmet>
+        <title>What to watch. Страница не найдена.</title>
+      </Helmet>
       <header className="page-header user-page__head">
         <Logo/>
       </header>
