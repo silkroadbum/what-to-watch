@@ -1,17 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-import FilmCard from '../../components/film-card/film-card';
+import FilmList from '../../components/film-list/film-list';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
+import { Film } from '../../types/film';
 
 type MainScreenProps = {
-  promoFilmName: string,
-  promoFilmGenre: string,
-  promoFilmYear: string
+  promoFilmName: string;
+  promoFilmGenre: string;
+  promoFilmYear: string;
+  films: Film[];
 }
 
-function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
+function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear, films}: MainScreenProps): JSX.Element {
   return (
     <>
       <Helmet>
@@ -109,9 +111,7 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {Array.from({length: 20}, (_,i) => <FilmCard key="i"/>)}
-          </div>
+          <FilmList films={films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

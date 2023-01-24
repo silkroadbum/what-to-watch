@@ -11,19 +11,21 @@ import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import { Film } from '../../types/film';
 
 type AppScreenProps = {
   promoFilmName: string,
   promoFilmGenre: string,
-  promoFilmYear: string
+  promoFilmYear: string,
+  films: Film[];
 }
 
-function App({promoFilmName, promoFilmGenre, promoFilmYear}: AppScreenProps): JSX.Element {
+function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} element={<MainScreen promoFilmName = {promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear}/>}/>
+          <Route path={AppRoute.Root} element={<MainScreen promoFilmName = {promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear} films={films}/>}/>
           <Route path={AppRoute.Login} element={<SignInScreen/>}/>
           <Route
             path={AppRoute.MyList}
