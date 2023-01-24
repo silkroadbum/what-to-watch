@@ -1,4 +1,6 @@
-export const films = [
+import { Film } from '../types/film';
+
+export const films: Film[] = [
   {
     name: 'Snatch',
     posterImage: 'https://10.react.pages.academy/static/film/poster/Snatch.jpg',
@@ -16,20 +18,15 @@ export const films = [
     id: 1,
     isFavorite: false,
     videoLink: 'https://10.react.pages.academy/static/film/video/matrix.mp4',
-    previewVideoLink:
-      'https://10.react.pages.academy/static/film/video/dog.mp4',
+    previewVideoLink: 'https://10.react.pages.academy/static/film/video/dog.mp4',
   },
   {
     name: 'Gangs of new york',
-    posterImage:
-      'https://10.react.pages.academy/static/film/poster/Gangs_of_New_York_Poster.jpg',
-    previewImage:
-      'https://10.react.pages.academy/static/film/preview/gangs_of_new_york.jpg',
-    backgroundImage:
-      'https://10.react.pages.academy/static/film/background/gangs_of_new_york.jpg',
+    posterImage: 'https://10.react.pages.academy/static/film/poster/Gangs_of_New_York_Poster.jpg',
+    previewImage: 'https://10.react.pages.academy/static/film/preview/gangs_of_new_york.jpg',
+    backgroundImage: 'https://10.react.pages.academy/static/film/background/gangs_of_new_york.jpg',
     backgroundColor: '#A6B7AC',
-    description:
-      'In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father&#39;s killer.',
+    description: 'In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father&#39;s killer.',
     rating: 8.8,
     scoresCount: 370881,
     director: 'Martin Scorsese',
@@ -40,8 +37,7 @@ export const films = [
     id: 2,
     isFavorite: false,
     videoLink: 'https://10.react.pages.academy/static/film/video/matrix.mp4',
-    previewVideoLink:
-      'https://10.react.pages.academy/static/film/video/dog.mp4',
+    previewVideoLink: 'https://10.react.pages.academy/static/film/video/dog.mp4',
   },
   {
     name: 'War of the Worlds',
