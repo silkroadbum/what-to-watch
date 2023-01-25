@@ -9,6 +9,7 @@ type FilmListProps = {
 function FilmList({films}: FilmListProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<number>();
 
+  // eslint-disable-next-line no-console
   console.log(activeCard);
 
   const onMouseOver = (id: number) => {
