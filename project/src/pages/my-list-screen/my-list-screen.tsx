@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
+import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
 
@@ -11,7 +12,7 @@ function MyListScreen(): JSX.Element {
         <title>WTW. Избранные фильмы.</title>
       </Helmet>
       <header className="page-header user-page__head">
-        <Logo/>
+        <Logo isFooter={false}/>
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
         <ul className="user-block">
@@ -115,19 +116,7 @@ function MyListScreen(): JSX.Element {
         </div>
       </section>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to={AppRoute.Root} className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

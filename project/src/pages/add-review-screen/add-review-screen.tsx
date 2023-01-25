@@ -23,7 +23,7 @@ function AddReviewScreen(): JSX.Element {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <Logo/>
+          <Logo isFooter={false}/>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
