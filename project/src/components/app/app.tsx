@@ -30,8 +30,8 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenPro
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <MyListScreen/>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <MyListScreen films={films}/>
               </PrivateRoute>
             }
           />
