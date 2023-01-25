@@ -1,7 +1,7 @@
 import Logo from '../logo/logo';
 
 
-function Footer() {
+function Footer(): JSX.Element {
   return (
     <footer className="page-footer">
       <Logo isFooter/>
