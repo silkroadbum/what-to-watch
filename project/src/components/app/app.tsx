@@ -35,7 +35,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenPro
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Film} element={<FilmScreen/>}/>
+          <Route path={AppRoute.Film} element={<FilmScreen films={films}/>}/>
           <Route
             path={AppRoute.AddReview}
             element={
