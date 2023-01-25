@@ -23,6 +23,7 @@ function CommentForm(): JSX.Element {
     evt.preventDefault();
     // eslint-disable-next-line no-console
     console.log('форма отправлена', formData);
+    setFormData({rating: 0, comment: ''});
   };
 
   return (
