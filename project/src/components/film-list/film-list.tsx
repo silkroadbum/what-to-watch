@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Film } from '../../types/film';
 import FilmCard from '../film-card/film-card';
 
@@ -6,9 +7,25 @@ type FilmListProps = {
 }
 
 function FilmList({films}: FilmListProps): JSX.Element {
+  const [activeCard, setActiveCard] = useState<number>();
+
+  console.log(activeCard);
+
+  const onMouseOver = (id: number) => {
+    setActiveCard(id);
+  };
+
   return (
     <div className="catalog__films-list">
-      {films && films.map((film) => <FilmCard key={film.id} previewImageUrl={film.previewImage} filmName={film.name} id={film.id}/>)}
+      {films && films.map((film) => (
+        <FilmCard
+          key={film.id}
+          previewImageUrl={film.previewImage}
+          filmName={film.name}
+          id={film.id}
+          onMouseOver={onMouseOver}
+        />)
+      )}
     </div>
   );
 }
