@@ -44,7 +44,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenPro
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Player} element={<PlayerScreen/>}/>
+          <Route path={AppRoute.Player} element={<PlayerScreen films={films}/>}/>
           <Route path='*' element={<NotFoundScreen/>}/>
         </Routes>
       </BrowserRouter>

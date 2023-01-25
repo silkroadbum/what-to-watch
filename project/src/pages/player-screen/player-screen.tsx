@@ -1,12 +1,23 @@
 import { Helmet } from 'react-helmet-async';
+import { useParams } from 'react-router-dom';
 
-function PlayerScreen(): JSX.Element {
+import { Film } from '../../types/film';
+
+type PlayerScreenProps = {
+  films: Film[];
+};
+
+function PlayerScreen({films}: PlayerScreenProps): JSX.Element {
+  const {id} = useParams();
+
+  const findedFilm = films.find((obj) => obj.id === Number(id));
+
   return (
     <div className="player">
       <Helmet>
         <title>WTW. Видеоплеер.</title>
       </Helmet>
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={findedFilm?.backgroundImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
