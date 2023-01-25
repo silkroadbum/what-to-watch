@@ -3,12 +3,16 @@ import { Helmet } from 'react-helmet-async';
 
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
+import { Film } from '../../types/film';
 
-function AddReviewScreen(): JSX.Element {
-  const params = useParams();
+type AddReviewScreenProps = {
+  films: Film[];
+}
 
-  // eslint-disable-next-line no-console
-  console.log(params);
+function AddReviewScreen({films}: AddReviewScreenProps): JSX.Element {
+  const {id} = useParams();
+
+  const findedFilm = films.find((film) => film.id === Number(id));
 
   return (
     <section className="film-card film-card--full">
@@ -17,7 +21,7 @@ function AddReviewScreen(): JSX.Element {
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={findedFilm?.backgroundImage} alt={findedFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,10 +32,10 @@ function AddReviewScreen(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link to={`/films/${id}`} className="breadcrumbs__link">{findedFilm?.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link" href="/">Add review</a>
+                <Link to={`/films/${id}/review`} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
@@ -49,7 +53,7 @@ function AddReviewScreen(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={findedFilm?.posterImage} alt={findedFilm?.name} width="218" height="327" />
         </div>
       </div>
 

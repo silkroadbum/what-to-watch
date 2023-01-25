@@ -39,8 +39,8 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenPro
           <Route
             path={AppRoute.AddReview}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <AddReviewScreen/>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <AddReviewScreen films={films}/>
               </PrivateRoute>
             }
           />
