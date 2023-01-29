@@ -13,4 +13,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export const TIME_TO_SHOW_PREVIEW_VIDEO = 1000;
+
 export const filmRatings: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
