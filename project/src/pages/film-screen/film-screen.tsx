@@ -1,20 +1,22 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 
+import FilmFullInfo from '../../components/film-full-info/film-full-info';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
+import { Comment } from '../../types/comments';
 import { Film } from '../../types/film';
 
 type FilmScreenProps = {
   films: Film[];
+  comments: Comment[];
 }
 
-function FilmScreen({films}: FilmScreenProps): JSX.Element {
+function FilmScreen({films, comments}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
 
   const findedFilm = films.find((film) => film.id === Number(id));
-  const stars = findedFilm?.starring.join(', ');
 
   return (
     <>
@@ -78,37 +80,7 @@ function FilmScreen({films}: FilmScreenProps): JSX.Element {
               <img src={findedFilm?.posterImage} alt={findedFilm?.name} width="218" height="327" />
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="/" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{findedFilm?.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{findedFilm?.scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{findedFilm?.description}</p>
-
-                <p className="film-card__director"><strong>Director: {findedFilm?.director}</strong></p>
-
-                <p className="film-card__starring"><strong>Starring: {stars} and other</strong></p>
-              </div>
-            </div>
+            <FilmFullInfo film={findedFilm} comments={comments}/>
           </div>
         </div>
       </section>

@@ -26,7 +26,7 @@ export const films: Film[] = [
     previewImage: 'https://10.react.pages.academy/static/film/preview/gangs_of_new_york.jpg',
     backgroundImage: 'https://10.react.pages.academy/static/film/background/gangs_of_new_york.jpg',
     backgroundColor: '#A6B7AC',
-    description: 'In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father&#39;s killer.',
+    description: 'In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father`s killer.',
     rating: 8.8,
     scoresCount: 370881,
     director: 'Martin Scorsese',
@@ -73,7 +73,7 @@ export const films: Film[] = [
       'https://10.react.pages.academy/static/film/background/Johnny_English.jpg',
     backgroundColor: '#F0DBA2',
     description:
-      'After a sudden attack on the MI5, Johnny English, Britain&#39;s most confident yet unintelligent spy, becomes Britain&#39;s only spy.',
+      'After a sudden attack on the MI5, Johnny English, Britain`s most confident yet unintelligent spy, becomes Britain`s only spy.',
     rating: 10,
     scoresCount: 136843,
     director: 'Peter Howitt',
@@ -97,7 +97,7 @@ export const films: Film[] = [
       'https://10.react.pages.academy/static/film/background/Dardjeeling_Limited.jpg',
     backgroundColor: '#AD9F8B',
     description:
-      'A year after their father&#39;s funeral, three brothers travel across India by train in an attempt to bond with each other.',
+      'A year after their father`s funeral, three brothers travel across India by train in an attempt to bond with each other.',
     rating: 3.6,
     scoresCount: 165106,
     director: 'Wes Anderson',
@@ -121,7 +121,7 @@ export const films: Film[] = [
       'https://10.react.pages.academy/static/film/background/What-We-Do-in-the-Shadows.jpg',
     backgroundColor: '#A39E81',
     description:
-      'A look into the daily (or rather, nightly) lives of three vampires who&#39;ve lived together for over 100 years, in Staten Island.',
+      'A look into the daily (or rather, nightly) lives of three vampires who`ve lived together for over 100 years, in Staten Island.',
     rating: 7.2,
     scoresCount: 6173,
     director: 'Jemaine Clement',
@@ -169,7 +169,7 @@ export const films: Film[] = [
       'https://10.react.pages.academy/static/film/background/Aviator.jpg',
     backgroundColor: '#D6CDAF',
     description:
-      'A biopic depicting the early years of legendary Director and aviator Howard Hughes&#39; career from the late 1920s to the mid 1940s.',
+      'A biopic depicting the early years of legendary Director and aviator Howard Hughes career from the late 1920s to the mid 1940s.',
     rating: 9.8,
     scoresCount: 307174,
     director: 'Martin Scorsese',

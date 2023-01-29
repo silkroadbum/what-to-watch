@@ -12,20 +12,22 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import { Film } from '../../types/film';
+import { Comment } from '../../types/comments';
 
 type AppScreenProps = {
   promoFilmName: string,
   promoFilmGenre: string,
   promoFilmYear: string,
   films: Film[];
+  comments: Comment[];
 }
 
-function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenProps): JSX.Element {
+function App({promoFilmName, promoFilmGenre, promoFilmYear, films, comments}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} element={<MainScreen promoFilmName = {promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear} films={films}/>}/>
+          <Route path={AppRoute.Root} element={<MainScreen promoFilmName={promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear} films={films}/>}/>
           <Route path={AppRoute.Login} element={<SignInScreen/>}/>
           <Route
             path={AppRoute.MyList}
@@ -35,7 +37,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, films}: AppScreenPro
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Film} element={<FilmScreen films={films}/>}/>
+          <Route path={AppRoute.Film} element={<FilmScreen films={films} comments={comments}/>}/>
           <Route
             path={AppRoute.AddReview}
             element={
