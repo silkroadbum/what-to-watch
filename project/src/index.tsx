@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store/index';
 
 import { films } from './mocks/films';
 import { comments } from './mocks/comments';
@@ -17,6 +19,8 @@ const PromoFilm = {
 
 root.render(
   <React.StrictMode>
-    <App promoFilmName={PromoFilm.Name} promoFilmGenre={PromoFilm.Genre} promoFilmYear={PromoFilm.Year} films={films} comments={comments}/>
+    <Provider store={store}>
+      <App promoFilmName={PromoFilm.Name} promoFilmGenre={PromoFilm.Genre} promoFilmYear={PromoFilm.Year} films={films} comments={comments}/>
+    </Provider>
   </React.StrictMode>,
 );
