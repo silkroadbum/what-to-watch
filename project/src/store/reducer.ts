@@ -2,13 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 import { changeGenre } from './action';
 
 const initialState = {
-  genre: 'All genres'
+  activeGenre: 'All genres'
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
-      state.genre = String(action.payload);
+      state.activeGenre = String(action.payload);
     });
 });
 
