@@ -1,12 +1,14 @@
 export const Genres = {
-  ALLGENRES: 'All genres',
-  COMEDIES: 'Comedies',
-  CRIME: 'Crime',
-  DOCUMENTARY: 'Documentary',
-  DRAMAS: 'Dramas',
-  HORROR: 'Horror',
-  KIDS: 'Kids & Family',
-  ROMANCE: 'Romance',
-  SCIFI: 'Sci-Fi',
-  THRILLERS: 'Thrillers'
-} as const;
+  'All genres': 'All genres',
+  'Comedies': 'Comedy',
+  'Crime': 'Crime',
+  'Documentary': 'Documentary',
+  'Dramas': 'Drama',
+  'Horror': 'Horror',
+  'Kids & Family': 'Kids & Family',
+  'Romance': 'Romance',
+  'Sci-Fi': 'Sci-Fi',
+  'Thrillers': 'Thriller'
+};
+
+export type GenresTypes = 'All genres' | 'Comedies' | 'Crime' | 'Documentary' | 'Dramas' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thrillers';

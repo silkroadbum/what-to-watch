@@ -1,3 +1,5 @@
+import { GenresTypes } from './types/genres';
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -17,7 +19,7 @@ export const TIME_TO_SHOW_PREVIEW_VIDEO = 1000;
 
 export const filmRatings: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-export const genres = [
+export const genres: GenresTypes[] = [
   'All genres',
   'Comedies',
   'Crime',
