@@ -1,13 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
 
-import { Film } from '../../types/film';
-
-type PlayerScreenProps = {
-  films: Film[];
-};
-
-function PlayerScreen({films}: PlayerScreenProps): JSX.Element {
+function PlayerScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
   const {id} = useParams();
 
   const findedFilm = films.find((obj) => obj.id === Number(id));

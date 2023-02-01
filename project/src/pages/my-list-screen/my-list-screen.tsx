@@ -1,18 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import FilmList from '../../components/film-list/film-list';
 
+import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
-import { Film } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 
-type MyListScreenProps = {
-  films: Film[];
-}
+function MyListScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
 
-function MyListScreen({films}: MyListScreenProps): JSX.Element {
-  const filteredFilmList = films.filter((obj) => obj.isFavorite);
+  const favoriteFilms = films.filter((film) => film.isFavorite);
 
   return (
     <div className="user-page">
@@ -38,7 +36,7 @@ function MyListScreen({films}: MyListScreenProps): JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <FilmList films={filteredFilmList}/>
+        <FilmList films={favoriteFilms}/>
       </section>
 
       <Footer/>

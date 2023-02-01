@@ -3,14 +3,11 @@ import { Helmet } from 'react-helmet-async';
 
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
-import { Film } from '../../types/film';
 import CommentForm from '../../components/comment-form/comment-form';
+import { useAppSelector } from '../../hooks';
 
-type AddReviewScreenProps = {
-  films: Film[];
-}
-
-function AddReviewScreen({films}: AddReviewScreenProps): JSX.Element {
+function AddReviewScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
   const {id} = useParams();
 
   const findedFilm = films.find((film) => film.id === Number(id));

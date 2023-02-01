@@ -6,15 +6,15 @@ import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
 import { Comment } from '../../types/comments';
-import { Film } from '../../types/film';
 
 type FilmScreenProps = {
-  films: Film[];
   comments: Comment[];
 }
 
-function FilmScreen({films, comments}: FilmScreenProps): JSX.Element {
+function FilmScreen({comments}: FilmScreenProps): JSX.Element {
+  const films = useAppSelector((state) => state.films);
   const {id} = useParams();
 
   const findedFilm = films.find((film) => film.id === Number(id));

@@ -6,16 +6,17 @@ import Footer from '../../components/footer/footer';
 import GenresList from '../../components/genres-list/genres-list';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
-import { Film } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 
 type MainScreenProps = {
   promoFilmName: string;
   promoFilmGenre: string;
   promoFilmYear: string;
-  films: Film[];
 }
 
-function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear, films}: MainScreenProps): JSX.Element {
+function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+
   return (
     <>
       <Helmet>
