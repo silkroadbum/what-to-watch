@@ -16,3 +16,16 @@ export enum AuthorizationStatus {
 export const TIME_TO_SHOW_PREVIEW_VIDEO = 1000;
 
 export const filmRatings: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+export const genres = [
+  'All genres',
+  'Comedies',
+  'Crime',
+  'Documentary',
+  'Dramas',
+  'Horror',
+  'Kids & Family',
+  'Romance',
+  'Sci-Fi',
+  'Thrillers'
+];

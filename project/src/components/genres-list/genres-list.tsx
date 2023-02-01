@@ -2,25 +2,12 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeGenre } from '../../store/action';
 
+import { genres } from '../../const';
 
-const genres = [
-  'All genres',
-  'Comedies',
-  'Crime',
-  'Documentary',
-  'Dramas',
-  'Horror',
-  'Kids & Family',
-  'Romance',
-  'Sci-Fi',
-  'Thrillers'
-];
 
 function GenresList(): JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
   const dispatch = useAppDispatch();
-  // eslint-disable-next-line no-console
-  console.log(activeGenre);
 
   const onClickGenre = (genre: string) => {
     dispatch(changeGenre(genre));
