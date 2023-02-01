@@ -11,7 +11,7 @@ function GenresList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const onClickGenre = (genre: GenresTypes) => {
-    dispatch(changeGenre(Genres[genre]));
+    dispatch(changeGenre(genre));
     dispatch(filteredFilmList(Genres[genre]));
   };
 
