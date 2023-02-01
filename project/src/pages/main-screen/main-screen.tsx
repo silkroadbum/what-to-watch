@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
@@ -5,6 +6,7 @@ import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import GenresList from '../../components/genres-list/genres-list';
 import Logo from '../../components/logo/logo';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 
@@ -15,7 +17,16 @@ type MainScreenProps = {
 }
 
 function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
+  const [countFilms, setCountFilms] = useState(8);
   const films = useAppSelector((state) => state.films);
+
+  const onClickShowMore = (reset: boolean) => {
+    if (reset) {
+      setCountFilms(8);
+    } else {
+      setCountFilms((prev) => prev + 8);
+    }
+  };
 
   return (
     <>
@@ -64,13 +75,13 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <Link to="/mylist" className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -81,13 +92,11 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList/>
+          <GenresList onChangeGenre={onClickShowMore}/>
 
-          <FilmList films={films}/>
+          <FilmList films={films} countFilms={countFilms}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {films.length > countFilms && <ShowMoreButton onClickShowMore={onClickShowMore}/>}
         </section>
 
         <Footer/>

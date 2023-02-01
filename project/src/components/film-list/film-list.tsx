@@ -3,12 +3,13 @@ import FilmCard from '../film-card/film-card';
 
 type FilmListProps = {
   films: Film[];
+  countFilms?: number;
 }
 
-function FilmList({films}: FilmListProps): JSX.Element {
+function FilmList({films, countFilms}: FilmListProps): JSX.Element {
   return (
     <div className="catalog__films-list">
-      {films && films.map((film) => (
+      {films && films.slice(0, countFilms).map((film) => (
         <FilmCard
           key={film.id}
           previewImageUrl={film.previewImage}
