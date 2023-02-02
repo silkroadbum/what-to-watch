@@ -1,11 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenre, filteredFilmList } from './action';
+import { changeGenre, filteredFilmList, loadFilms, requireAuthorization } from './action';
 import { films } from '../mocks/films';
 import { Genres } from '../types/genres';
+import { AuthorizationStatus } from '../const';
 
 const initialState = {
   activeGenre: 'All genres',
-  films
+  films,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -17,6 +19,12 @@ const reducer = createReducer(initialState, (builder) => {
       state.films = action.payload !== Genres['All genres']
         ? films.filter((film) => film.genre === action.payload)
         : films.filter((film) => film.genre !== '');
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.films = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
