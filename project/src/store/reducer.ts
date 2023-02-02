@@ -14,13 +14,9 @@ const reducer = createReducer(initialState, (builder) => {
       state.activeGenre = String(action.payload);
     })
     .addCase(filteredFilmList, (state, action) => {
-      if (action.payload !== Genres['All genres']) {
-        state.films = films.filter((film) => film.genre === action.payload);
-        // eslint-disable-next-line no-console
-        console.log(state.films);
-      } else {
-        state.films = films.filter((film) => film.genre !== '');
-      }
+      state.films = action.payload !== Genres['All genres']
+        ? films.filter((film) => film.genre === action.payload)
+        : films.filter((film) => film.genre !== '');
     });
 });
 

@@ -13,7 +13,7 @@ function GenresList({onChangeGenre}: GenresListProps): JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
   const dispatch = useAppDispatch();
 
-  const onClickGenre = (genre: GenresTypes) => {
+  const handleClickGenre = (genre: GenresTypes) => {
     dispatch(changeGenre(genre));
     dispatch(filteredFilmList(Genres[genre]));
     onChangeGenre(true);
@@ -23,7 +23,7 @@ function GenresList({onChangeGenre}: GenresListProps): JSX.Element {
     <ul className="catalog__genres-list">
       {genres.map((genre) => (
         <li key={genre} className={`catalog__genres-item ${activeGenre === genre ? 'catalog__genres-item--active' : ''}`}>
-          <Link to="" onClick={() => onClickGenre(genre)} className="catalog__genres-link">{genre}</Link>
+          <Link to="" onClick={() => handleClickGenre(genre)} className="catalog__genres-link">{genre}</Link>
         </li>
       ))}
 

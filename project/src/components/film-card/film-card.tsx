@@ -22,9 +22,9 @@ function FilmCard({previewImageUrl, filmName, id, srcVideo}: FilmCardProps): JSX
 
   return (
     <article onMouseOver={onMouseOverCard} onMouseOut={onMouseOutCard} className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
+      <Link to={`/films/${id}`} className="small-film-card__image" style={{display: 'block'}}>
         {isPlaying ? <VideoPreview src={srcVideo} poster={previewImageUrl}/> : <img src={previewImageUrl} alt={filmName} width="280" height="175" />}
-      </div>
+      </Link>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={`/films/${id}`}>{filmName}</Link>
       </h3>
