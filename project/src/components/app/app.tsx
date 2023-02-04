@@ -12,7 +12,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { Comment } from '../../types/comments';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 
 type AppScreenProps = {
   promoFilmName: string,
@@ -39,7 +39,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, comments}: AppScreen
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute>
                 <MyListScreen/>
               </PrivateRoute>
             }
@@ -48,7 +48,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, comments}: AppScreen
           <Route
             path={AppRoute.AddReview}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute>
                 <AddReviewScreen/>
               </PrivateRoute>
             }
