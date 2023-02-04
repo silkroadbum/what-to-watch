@@ -8,4 +8,6 @@ export const filteredFilmList = createAction<string>('filteredFilmList');
 
 export const loadFilms = createAction<Film[]>('loadFilms');
 
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+
+export const setError = createAction<string | null>('setError');

@@ -17,6 +17,8 @@ export enum AuthorizationStatus {
 
 export const TIME_TO_SHOW_PREVIEW_VIDEO = 1000;
 
+export const TIMEOUT_SHOW_ERROR = 3000;
+
 export const filmRatings: number[] = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
 export const genres: GenresTypes[] = [
@@ -31,3 +33,9 @@ export const genres: GenresTypes[] = [
   'Sci-Fi',
   'Thrillers'
 ];
+
+export enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
