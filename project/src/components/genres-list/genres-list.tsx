@@ -1,21 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenre, filteredFilmList } from '../../store/action';
-
-import { genres } from '../../const';
-import { Genres, GenresTypes } from '../../types/genres';
+import { changeGenre } from '../../store/action';
 
 type GenresListProps = {
   onChangeGenre: (reset: boolean) => void;
 }
 
 function GenresList({onChangeGenre}: GenresListProps): JSX.Element {
-  const activeGenre = useAppSelector((state) => state.activeGenre);
+  const {activeGenre, films} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
-  const handleClickGenre = (genre: GenresTypes) => {
+  const genresFromServer = films.map((film) => film.genre);
+  const uniqueGenres = new Set(genresFromServer);
+
+  const genres = ['All genres', ...Array.from(uniqueGenres)];
+
+
+  const handleClickGenre = (genre: string) => {
     dispatch(changeGenre(genre));
-    dispatch(filteredFilmList(Genres[genre]));
     onChangeGenre(true);
   };
 

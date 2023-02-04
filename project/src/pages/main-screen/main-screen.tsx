@@ -9,6 +9,7 @@ import Logo from '../../components/logo/logo';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { Film } from '../../types/film';
 
 type MainScreenProps = {
   promoFilmName: string;
@@ -18,7 +19,8 @@ type MainScreenProps = {
 
 function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
   const [countFilms, setCountFilms] = useState(8);
-  const films = useAppSelector((state) => state.films);
+  const {activeGenre, films} = useAppSelector((state) => state);
+  const filteredFilms: Film[] = activeGenre === 'All genres' ? films : films.filter((film) => film.genre === activeGenre);
 
   const onClickShowMore = (reset: boolean) => {
     if (reset) {
@@ -94,9 +96,9 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
 
           <GenresList onChangeGenre={onClickShowMore}/>
 
-          <FilmList films={films} countFilms={countFilms}/>
+          <FilmList films={filteredFilms} countFilms={countFilms}/>
 
-          {films.length > countFilms && <ShowMoreButton onClickShowMore={onClickShowMore}/>}
+          {filteredFilms.length > countFilms && <ShowMoreButton onClickShowMore={onClickShowMore}/>}
         </section>
 
         <Footer/>

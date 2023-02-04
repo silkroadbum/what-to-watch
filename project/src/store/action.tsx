@@ -4,9 +4,10 @@ import { AuthorizationStatus } from '../const';
 
 export const changeGenre = createAction<string>('changeGenre');
 
-export const filteredFilmList = createAction<string>('filteredFilmList');
 
 export const loadFilms = createAction<Film[]>('loadFilms');
+
+export const setDataLoadedStatus = createAction<boolean>('setDataLoadedStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
 
