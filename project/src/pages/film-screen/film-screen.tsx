@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import FilmFullInfo from '../../components/film-full-info/film-full-info';
 import FilmList from '../../components/film-list/film-list';
@@ -15,12 +15,12 @@ type FilmScreenProps = {
 }
 
 function FilmScreen({comments}: FilmScreenProps): JSX.Element {
-  const {films, authorizationStatus, film} = useAppSelector((state) => state);
+  const {authorizationStatus, film, similarFilms} = useAppSelector((state) => state);
   const {id} = useParams();
 
-  const similarFilms = films.filter((item) => item.genre === film?.genre && item.id !== film?.id).slice(0, 4);
+  const newSimilarFilms = similarFilms.filter((item) => film && item.id !== film.id).slice(0, 4);
 
-  return !film ? <Navigate to={'*'}/> : (
+  return (
     <>
       <Helmet>
         <title>WTW. Информация о фильме</title>
@@ -83,7 +83,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <FilmList films={similarFilms}/>
+            <FilmList films={newSimilarFilms}/>
           </section>
           : ''}
         <Footer/>

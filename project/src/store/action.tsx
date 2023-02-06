@@ -11,6 +11,8 @@ export const loadFilm = createAction<Film>('loadFilm');
 
 export const loadComments = createAction<Comments>('loadComments');
 
+export const loadSimilarFilms = createAction<Film[]>('loadSimilarFilms');
+
 export const loadPromo = createAction<Film>('loadPromo');
 
 export const setDataLoadedStatus = createAction<boolean>('setDataLoadedStatus');
