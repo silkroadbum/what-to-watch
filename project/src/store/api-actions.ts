@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Film, FilmId} from '../types/film';
-import {loadFilms, requireAuthorization, setDataLoadedStatus, loadPromo, loadFilm, loadComments, loadSimilarFilms} from './action';
+import {loadFilms, requireAuthorization, setDataLoadedStatus, loadPromo, loadFilm, loadComments, loadSimilarFilms, setError} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AuthorizationStatus} from '../const';
 import {AuthData} from '../types/auth-data';
@@ -31,8 +31,12 @@ export const fetchFilm = createAsyncThunk<void, FilmId, {
 }>(
   'data/fetchFilm',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
-    dispatch(loadFilm(data));
+    try {
+      const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
+      dispatch(loadFilm(data));
+    } catch {
+      dispatch(setError('Не удалось получить фильм'));
+    }
   },
 );
 
@@ -43,8 +47,13 @@ export const fetchSimilarFilms = createAsyncThunk<void, FilmId, {
 }>(
   'data/fetchSimilarFilms',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
-    dispatch(loadSimilarFilms(data));
+    try {
+      const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
+      dispatch(loadSimilarFilms(data));
+    } catch {
+      dispatch(setError('Не удалось получить похожие фильмы'));
+    }
+
   },
 );
 
@@ -55,8 +64,13 @@ export const fetchComments = createAsyncThunk<void, FilmId, {
 }>(
   'data/fetchComments',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
-    dispatch(loadComments(data));
+    try {
+      const {data} = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
+      dispatch(loadComments(data));
+    } catch {
+      dispatch(setError('Не удалось получить комментарии'));
+    }
+
   },
 );
 
@@ -67,8 +81,12 @@ export const fetchPromoAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film>(APIRoute.Promo);
-    dispatch(loadPromo(data));
+    try {
+      const {data} = await api.get<Film>(APIRoute.Promo);
+      dispatch(loadPromo(data));
+    } catch {
+      dispatch(setError('Не удалось получить промофильм'));
+    }
   },
 );
 
@@ -108,8 +126,13 @@ export const addComment = createAsyncThunk<void, CommentData, {
 }>(
   'user/addComment',
   async ({id , comment, rating}, {dispatch, extra: api}) => {
-    const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
-    dispatch(loadComments(data));
+    try {
+      const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
+      dispatch(loadComments(data));
+    } catch {
+      dispatch(setError('Не удалось добавить комментарий'));
+    }
+
   },
 );
 

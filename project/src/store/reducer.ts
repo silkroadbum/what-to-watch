@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenre, loadFilms, loadPromo, requireAuthorization, setDataLoadedStatus, loadFilm, loadComments, loadSimilarFilms, clearFilm } from './action';
+import { changeGenre, loadFilms, loadPromo, requireAuthorization, setDataLoadedStatus, loadFilm, loadComments, loadSimilarFilms, clearFilm, setError } from './action';
 import { AuthorizationStatus } from '../const';
 import { Film } from '../types/film';
 import { Comments } from '../types/comments';
@@ -53,6 +53,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilm, (state, action) => {
       state.film = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;

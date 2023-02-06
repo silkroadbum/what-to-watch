@@ -20,3 +20,5 @@ export const loadPromo = createAction<Film>('loadPromo');
 export const setDataLoadedStatus = createAction<boolean>('setDataLoadedStatus');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+
+export const setError = createAction<string | null>('setError');
