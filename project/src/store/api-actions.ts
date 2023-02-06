@@ -8,6 +8,7 @@ import {APIRoute, AuthorizationStatus} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import { Comments } from '../types/comments.js';
+import { CommentData } from '../types/comment-data.js';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -97,6 +98,18 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+  },
+);
+
+export const addComment = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'user/addComment',
+  async ({id , comment, rating}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(loadComments(data));
   },
 );
 

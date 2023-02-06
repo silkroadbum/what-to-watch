@@ -1,9 +1,13 @@
 import React from 'react';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { filmRatings } from '../../const';
+import { store } from '../../store';
+import { addComment } from '../../store/api-actions';
 
 function CommentForm(): JSX.Element {
+  const {id} = useParams();
   const [formData, setFormData] = useState({
     rating: 0,
     comment: ''
@@ -21,8 +25,7 @@ function CommentForm(): JSX.Element {
 
   const onSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log('форма отправлена', formData);
+    id && store.dispatch(addComment({id, ...formData}));
     setFormData({rating: 0, comment: ''});
   };
 
