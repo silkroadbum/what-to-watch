@@ -1,12 +1,18 @@
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 function PlayerScreen(): JSX.Element {
   const films = useAppSelector((state) => state.films);
   const {id} = useParams();
+  const navigate = useNavigate();
 
   const findedFilm = films.find((obj) => obj.id === Number(id));
+
+  const handleClickExit = () => {
+    navigate(AppRoute.Root);
+  };
 
   return (
     <div className="player">
@@ -15,7 +21,7 @@ function PlayerScreen(): JSX.Element {
       </Helmet>
       <video src="#" className="player__video" poster={findedFilm?.backgroundImage}></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button onClick={handleClickExit} type="button" className="player__exit">Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
