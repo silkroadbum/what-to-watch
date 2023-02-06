@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import FilmFullInfo from '../../components/film-full-info/film-full-info';
 import FilmList from '../../components/film-list/film-list';
@@ -20,7 +20,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
 
   const similarFilms = films.filter((item) => item.genre === film?.genre && item.id !== film?.id).slice(0, 4);
 
-  return (
+  return !film ? <Navigate to={'*'}/> : (
     <>
       <Helmet>
         <title>WTW. Информация о фильме</title>
