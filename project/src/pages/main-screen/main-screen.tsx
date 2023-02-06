@@ -11,15 +11,9 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { Film } from '../../types/film';
 
-type MainScreenProps = {
-  promoFilmName: string;
-  promoFilmGenre: string;
-  promoFilmYear: string;
-}
-
-function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenProps): JSX.Element {
+function MainScreen(): JSX.Element {
   const [countFilms, setCountFilms] = useState(8);
-  const {activeGenre, films} = useAppSelector((state) => state);
+  const {activeGenre, films, promoFilm} = useAppSelector((state) => state);
   const filteredFilms: Film[] = activeGenre === 'All genres' ? films : films.filter((film) => film.genre === activeGenre);
 
   const onClickShowMore = (reset: boolean) => {
@@ -64,10 +58,10 @@ function MainScreen({promoFilmName, promoFilmGenre, promoFilmYear}: MainScreenPr
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilmName}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilmGenre}</span>
-                <span className="film-card__year">{promoFilmYear}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">

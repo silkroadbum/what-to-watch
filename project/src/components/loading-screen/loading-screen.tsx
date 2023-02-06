@@ -1,6 +1,6 @@
 function LoadingScreen(): JSX.Element {
   return (
-    <p>Loading ...</p>
+    <p style={{textAlign: 'center'}}>Loading ...</p>
   );
 }
 

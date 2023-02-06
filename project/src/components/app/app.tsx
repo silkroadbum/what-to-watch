@@ -13,18 +13,16 @@ import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { Comment } from '../../types/comments';
 import { AppRoute } from '../../const';
+import { isCheckedAuth } from '../../check';
 
 type AppScreenProps = {
-  promoFilmName: string,
-  promoFilmGenre: string,
-  promoFilmYear: string,
   comments: Comment[];
 }
 
-function App({promoFilmName, promoFilmGenre, promoFilmYear, comments}: AppScreenProps): JSX.Element {
-  const {isDataLoaded} = useAppSelector((state) => state);
+function App({comments}: AppScreenProps): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
 
-  if (isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
     return (
       <LoadingScreen />
     );
@@ -34,12 +32,12 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, comments}: AppScreen
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} element={<MainScreen promoFilmName={promoFilmName} promoFilmGenre={promoFilmGenre} promoFilmYear={promoFilmYear}/>}/>
+          <Route path={AppRoute.Root} element={<MainScreen/>}/>
           <Route path={AppRoute.Login} element={<SignInScreen/>}/>
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MyListScreen/>
               </PrivateRoute>
             }
@@ -48,7 +46,7 @@ function App({promoFilmName, promoFilmGenre, promoFilmYear, comments}: AppScreen
           <Route
             path={AppRoute.AddReview}
             element={
-              <PrivateRoute>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <AddReviewScreen/>
               </PrivateRoute>
             }
