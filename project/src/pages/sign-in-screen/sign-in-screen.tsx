@@ -1,10 +1,9 @@
 import { Helmet } from 'react-helmet-async';
-import {useRef, FormEvent} from 'react';
+import {useRef, FormEvent, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
-import {AuthData} from '../../types/auth-data';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 
 
 import Footer from '../../components/footer/footer';
@@ -13,24 +12,33 @@ import Logo from '../../components/logo/logo';
 function SignInScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authorizationStatus = useAppSelector((store) => store.authorizationStatus);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
-
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-
+  const getAuthData = () => {
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
-        login: loginRef.current.value,
-        password: passwordRef.current.value,
-      });
+      return {
+        email: loginRef.current.value,
+        password: passwordRef.current.value
+      };
     }
   };
+
+  const submitAuthHandler = (evt:FormEvent) => {
+    evt.preventDefault();
+    const userData = getAuthData();
+    if (userData) {
+      dispatch(loginAction(userData));
+    }
+  };
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Root);
+    }
+  });
 
   return (
     <div className="user-page">
@@ -44,7 +52,7 @@ function SignInScreen(): JSX.Element {
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+        <form action="#" className="sign-in__form" onSubmit={submitAuthHandler}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input ref={loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
@@ -56,7 +64,7 @@ function SignInScreen(): JSX.Element {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button onClick={() => navigate(AppRoute.Root)} className="sign-in__btn" type="submit">Sign in</button>
+            <button className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>

@@ -1,9 +1,15 @@
 import { useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
+import { store } from '../../store';
+import { logoutAction } from '../../store/api-actions';
 
 function UserBlock() {
   const userAuthStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const handleClockLogout = () => {
+    store.dispatch(logoutAction());
+  };
 
   return userAuthStatus === AuthorizationStatus.Auth ?
     (
@@ -14,7 +20,7 @@ function UserBlock() {
           </div>
         </li>
         <li className="user-block__item">
-          <Link to={AppRoute.Root} className="user-block__link">Sign out</Link>
+          <Link to={AppRoute.Root} onClick={handleClockLogout} className="user-block__link">Sign out</Link>
         </li>
       </ul>
     )
