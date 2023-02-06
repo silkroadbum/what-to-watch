@@ -8,7 +8,7 @@ import { Comment } from '../../types/comments';
 import FilmReviews from '../film-reviews/film-reviews';
 
 type FilmFullInfoProps = {
-  film: Film | undefined;
+  film: Film | null;
   comments: Comment[];
 }
 
@@ -26,7 +26,7 @@ function FilmFullInfo({film, comments}: FilmFullInfoProps): JSX.Element {
   const tabs = [
     <FilmOverview key={0} film={film} stars={stars}/>,
     <FilmDetails key={1} film={film}/>,
-    <FilmReviews key={2} comments={comments}/>
+    <FilmReviews key={2}/>
   ];
 
   return (

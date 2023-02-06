@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { store } from '../../store';
+import { fetchComments, fetchFilm } from '../../store/api-actions';
 import VideoPreview from '../video-preview/video-preview';
 
 type FilmCardProps = {
@@ -20,8 +22,13 @@ function FilmCard({previewImageUrl, filmName, id, srcVideo}: FilmCardProps): JSX
     setIsPlaying(false);
   };
 
+  const handlerClickCard = () => {
+    store.dispatch(fetchFilm(String(id)));
+    store.dispatch(fetchComments(String(id)));
+  };
+
   return (
-    <article onMouseOver={onMouseOverCard} onMouseOut={onMouseOutCard} className="small-film-card catalog__films-card">
+    <article onMouseOver={onMouseOverCard} onMouseOut={onMouseOutCard} onClick={handlerClickCard} className="small-film-card catalog__films-card">
       <Link to={`/films/${id}`} className="small-film-card__image" style={{display: 'block'}}>
         {isPlaying ? <VideoPreview src={srcVideo} poster={previewImageUrl}/> : <img src={previewImageUrl} alt={filmName} width="280" height="175" />}
       </Link>

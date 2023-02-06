@@ -1,7 +1,7 @@
 import { Film } from '../../types/film';
 
 type FilmOverviewProps = {
-  film: Film | undefined;
+  film: Film | null;
   stars: string | undefined;
 };
 

@@ -15,11 +15,10 @@ type FilmScreenProps = {
 }
 
 function FilmScreen({comments}: FilmScreenProps): JSX.Element {
-  const {films, authorizationStatus} = useAppSelector((state) => state);
+  const {films, authorizationStatus, film} = useAppSelector((state) => state);
   const {id} = useParams();
 
-  const findedFilm = films.find((film) => film.id === Number(id));
-  const similarFilms = films.filter((film) => film.genre === findedFilm?.genre && film.id !== findedFilm.id).slice(0, 4);
+  const similarFilms = films.filter((item) => item.genre === film?.genre && item.id !== film?.id).slice(0, 4);
 
   return (
     <>
@@ -29,7 +28,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={findedFilm?.backgroundImage} alt={findedFilm?.name} />
+            <img src={film?.backgroundImage} alt={film?.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -42,10 +41,10 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{findedFilm?.name}</h2>
+              <h2 className="film-card__title">{film?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{findedFilm?.genre}</span>
-                <span className="film-card__year">{findedFilm?.released}</span>
+                <span className="film-card__genre">{film?.genre}</span>
+                <span className="film-card__year">{film?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -71,10 +70,10 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={findedFilm?.posterImage} alt={findedFilm?.name} width="218" height="327" />
+              <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
             </div>
 
-            <FilmFullInfo film={findedFilm} comments={comments}/>
+            <FilmFullInfo film={film} comments={comments}/>
           </div>
         </div>
       </section>

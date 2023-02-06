@@ -17,3 +17,5 @@ export type Film = {
   videoLink: string;
   previewVideoLink: string;
 };
+
+export type FilmId = string;
