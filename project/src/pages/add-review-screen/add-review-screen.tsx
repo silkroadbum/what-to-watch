@@ -2,9 +2,9 @@ import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import Logo from '../../components/logo/logo';
-import { AppRoute } from '../../const';
 import CommentForm from '../../components/comment-form/comment-form';
 import { useAppSelector } from '../../hooks';
+import UserBlock from '../../components/user-block/user-block';
 
 function AddReviewScreen(): JSX.Element {
   const films = useAppSelector((state) => state.films);
@@ -38,16 +38,7 @@ function AddReviewScreen(): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link className="user-block__link" to={AppRoute.Root}>Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock/>
         </header>
 
         <div className="film-card__poster film-card__poster--small">

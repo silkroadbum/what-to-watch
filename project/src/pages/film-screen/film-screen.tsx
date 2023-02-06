@@ -5,7 +5,7 @@ import FilmFullInfo from '../../components/film-full-info/film-full-info';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { AppRoute } from '../../const';
+import UserBlock from '../../components/user-block/user-block';
 import { useAppSelector } from '../../hooks';
 import { Comment } from '../../types/comments';
 
@@ -36,16 +36,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
           <header className="page-header film-card__head">
             <Logo isFooter={false}/>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link className="user-block__link" to={AppRoute.Root}>Sign out</Link>
-              </li>
-            </ul>
+            <UserBlock/>
           </header>
 
           <div className="film-card__wrap">

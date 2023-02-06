@@ -13,16 +13,15 @@ import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { Comment } from '../../types/comments';
 import { AppRoute } from '../../const';
-import { isCheckedAuth } from '../../check';
 
 type AppScreenProps = {
   comments: Comment[];
 }
 
 function App({comments}: AppScreenProps): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  const {isDataLoaded} = useAppSelector((state) => state);
 
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+  if (isDataLoaded) {
     return (
       <LoadingScreen />
     );
@@ -37,7 +36,7 @@ function App({comments}: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute>
                 <MyListScreen/>
               </PrivateRoute>
             }
@@ -46,7 +45,7 @@ function App({comments}: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.AddReview}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute>
                 <AddReviewScreen/>
               </PrivateRoute>
             }

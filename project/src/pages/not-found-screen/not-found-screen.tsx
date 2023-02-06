@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
 import { AppRoute } from '../../const';
 
 function NotFoundScreen(): JSX.Element {
@@ -13,6 +14,7 @@ function NotFoundScreen(): JSX.Element {
       </Helmet>
       <header className="page-header user-page__head">
         <Logo isFooter={false}/>
+        <UserBlock/>
       </header>
 
       <div className="sign-in user-page__content" style={{textAlign: 'center'}}>
