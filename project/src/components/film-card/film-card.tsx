@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
 import { store } from '../../store';
+import { clearFilm } from '../../store/action';
 import { fetchComments, fetchFilm, fetchSimilarFilms } from '../../store/api-actions';
 import VideoPreview from '../video-preview/video-preview';
 
@@ -13,6 +15,7 @@ type FilmCardProps = {
 
 function FilmCard({previewImageUrl, filmName, id, srcVideo}: FilmCardProps): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
+  const dispatch = useAppDispatch();
 
   const onMouseOverCard = () => {
     setIsPlaying(true);
@@ -23,6 +26,7 @@ function FilmCard({previewImageUrl, filmName, id, srcVideo}: FilmCardProps): JSX
   };
 
   const handlerClickCard = () => {
+    dispatch(clearFilm());
     store.dispatch(fetchFilm(String(id)));
     store.dispatch(fetchComments(String(id)));
     store.dispatch(fetchSimilarFilms(String(id)));
