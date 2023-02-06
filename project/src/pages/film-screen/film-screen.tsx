@@ -6,6 +6,7 @@ import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
+import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { Comment } from '../../types/comments';
 
@@ -14,7 +15,7 @@ type FilmScreenProps = {
 }
 
 function FilmScreen({comments}: FilmScreenProps): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const {films, authorizationStatus} = useAppSelector((state) => state);
   const {id} = useParams();
 
   const findedFilm = films.find((film) => film.id === Number(id));
@@ -61,7 +62,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>
+                {authorizationStatus === AuthorizationStatus.Auth ? <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link> : ''}
               </div>
             </div>
           </div>
