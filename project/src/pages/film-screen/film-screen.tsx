@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 
@@ -8,17 +9,24 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { store } from '../../store';
+import { fetchFilm } from '../../store/api-actions';
 import { getFilm, getSimilarFilms } from '../../store/app-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 
 function FilmScreen(): JSX.Element {
+  const {id} = useParams();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const film = useAppSelector(getFilm);
   const similarFilms = useAppSelector(getSimilarFilms);
-  const {id} = useParams();
 
   const newSimilarFilms = similarFilms.filter((item) => film && item.id !== film.id).slice(0, 4);
+
+  useEffect(() => {
+    store.dispatch(fetchFilm(String(id)));
+  }, [id]);
 
   return (
     <>

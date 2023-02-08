@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
-import { fetchComments, fetchFilm, fetchSimilarFilms } from '../../store/api-actions';
+import { fetchComments, fetchSimilarFilms } from '../../store/api-actions';
 import VideoPreview from '../video-preview/video-preview';
 
 type FilmCardProps = {
@@ -23,7 +23,6 @@ function FilmCard({previewImageUrl, filmName, id, srcVideo}: FilmCardProps): JSX
   };
 
   const handlerClickCard = () => {
-    store.dispatch(fetchFilm(String(id)));
     store.dispatch(fetchComments(String(id)));
     store.dispatch(fetchSimilarFilms(String(id)));
   };
