@@ -2,7 +2,6 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {Film, FilmId} from '../types/film';
-import {loadFilms, setDataLoadedStatus, loadPromo, loadFilm, loadComments, loadSimilarFilms, setError} from './action';
 import {saveToken, dropToken} from '../services/token';
 import { APIRoute } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -10,7 +9,7 @@ import { UserData } from '../types/user-data';
 import { Comments } from '../types/comments.js';
 import { CommentData } from '../types/comment-data.js';
 
-export const fetchFilmsAction = createAsyncThunk<void, undefined, {
+export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
@@ -18,75 +17,55 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Film[]>(APIRoute.Films);
-    dispatch(setDataLoadedStatus(true));
-    dispatch(loadFilms(data));
-    dispatch(setDataLoadedStatus(false));
+    return data;
   },
 );
 
-export const fetchFilm = createAsyncThunk<void, FilmId, {
+export const fetchFilm = createAsyncThunk<Film, FilmId, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchFilm',
   async (id, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
-      dispatch(loadFilm(data));
-    } catch {
-      dispatch(setError('Не удалось получить фильм'));
-    }
+    const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
+    return data;
   },
 );
 
-export const fetchSimilarFilms = createAsyncThunk<void, FilmId, {
+export const fetchSimilarFilms = createAsyncThunk<Film[], FilmId, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchSimilarFilms',
   async (id, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
-      dispatch(loadSimilarFilms(data));
-    } catch {
-      dispatch(setError('Не удалось получить похожие фильмы'));
-    }
-
+    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
+    return data;
   },
 );
 
-export const fetchComments = createAsyncThunk<void, FilmId, {
+export const fetchComments = createAsyncThunk<Comments, FilmId, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchComments',
   async (id, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
-      dispatch(loadComments(data));
-    } catch {
-      dispatch(setError('Не удалось получить комментарии'));
-    }
-
+    const {data} = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
+    return data;
   },
 );
 
-export const fetchPromoAction = createAsyncThunk<void, undefined, {
+export const fetchPromoAction = createAsyncThunk<Film, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Film>(APIRoute.Promo);
-      dispatch(loadPromo(data));
-    } catch {
-      dispatch(setError('Не удалось получить промофильм'));
-    }
+    const {data} = await api.get<Film>(APIRoute.Promo);
+    return data;
   },
 );
 
@@ -125,19 +104,14 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const addComment = createAsyncThunk<void, CommentData, {
+export const addComment = createAsyncThunk<Comments, CommentData, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'user/addComment',
   async ({id , comment, rating}, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
-      dispatch(loadComments(data));
-    } catch {
-      dispatch(setError('Не удалось добавить комментарий'));
-    }
-
+    const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    return data;
   },
 );

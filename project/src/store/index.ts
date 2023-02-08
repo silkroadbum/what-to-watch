@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './reducer';
 import { createAPI } from '../services/api';
+import { rootReduces } from './roor-reducer';
 
 const api = createAPI();
 
 export const store = configureStore({
-  reducer,
+  reducer: rootReduces,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
