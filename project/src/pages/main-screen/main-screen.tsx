@@ -9,11 +9,14 @@ import Logo from '../../components/logo/logo';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import UserBlock from '../../components/user-block/user-block';
 import { useAppSelector } from '../../hooks';
+import { getActiveGenre, getFilms, getPromoFilm } from '../../store/app-data/selectors';
 import { Film } from '../../types/film';
 
 function MainScreen(): JSX.Element {
   const [countFilms, setCountFilms] = useState(8);
-  const {activeGenre, films, promoFilm} = useAppSelector((state) => state);
+  const activeGenre = useAppSelector(getActiveGenre);
+  const films = useAppSelector(getFilms);
+  const promoFilm = useAppSelector(getPromoFilm);
   const filteredFilms: Film[] = activeGenre === 'All genres' ? films : films.filter((film) => film.genre === activeGenre);
 
   const onClickShowMore = (reset: boolean) => {

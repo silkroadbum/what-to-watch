@@ -3,9 +3,10 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { logoutAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function UserBlock() {
-  const userAuthStatus = useAppSelector((state) => state.authorizationStatus);
+  const userAuthStatus = useAppSelector(getAuthorizationStatus);
 
   const handleClockLogout = () => {
     store.dispatch(logoutAction());

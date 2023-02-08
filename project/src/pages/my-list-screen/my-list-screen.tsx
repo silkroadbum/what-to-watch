@@ -5,9 +5,10 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/app-data/selectors';
 
 function MyListScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector(getFilms);
 
   const favoriteFilms = films.filter((film) => film.isFavorite);
 

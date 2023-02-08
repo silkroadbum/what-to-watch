@@ -8,14 +8,14 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { Comment } from '../../types/comments';
+import { getFilm, getSimilarFilms } from '../../store/app-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
-type FilmScreenProps = {
-  comments: Comment[];
-}
 
-function FilmScreen({comments}: FilmScreenProps): JSX.Element {
-  const {authorizationStatus, film, similarFilms} = useAppSelector((state) => state);
+function FilmScreen(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const film = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
   const {id} = useParams();
 
   const newSimilarFilms = similarFilms.filter((item) => film && item.id !== film.id).slice(0, 4);
@@ -73,7 +73,7 @@ function FilmScreen({comments}: FilmScreenProps): JSX.Element {
               <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
             </div>
 
-            <FilmFullInfo film={film} comments={comments}/>
+            <FilmFullInfo/>
           </div>
         </div>
       </section>

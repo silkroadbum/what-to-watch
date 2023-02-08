@@ -1,21 +1,17 @@
 import { Link } from 'react-router-dom';
 
 import FilmOverview from '../film-overview/film-overview';
-import { Film } from '../../types/film';
 import FilmDetails from '../film-details/film-details';
 import { useState } from 'react';
-import { Comment } from '../../types/comments';
 import FilmReviews from '../film-reviews/film-reviews';
-
-type FilmFullInfoProps = {
-  film: Film | null;
-  comments: Comment[];
-}
+import { getFilm } from '../../store/app-data/selectors';
+import { useAppSelector } from '../../hooks';
 
 const fullFilmInfoLink = ['Overview', 'Details', 'Reviews'];
 
-function FilmFullInfo({film, comments}: FilmFullInfoProps): JSX.Element {
+function FilmFullInfo(): JSX.Element {
   const [activeLink, setActiveLink] = useState(0);
+  const film = useAppSelector(getFilm);
 
   const onClickLink = (id: number) => {
     setActiveLink(id);

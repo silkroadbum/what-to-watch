@@ -2,9 +2,10 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/app-data/selectors';
 
 function PlayerScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector(getFilms);
   const {id} = useParams();
   const navigate = useNavigate();
 

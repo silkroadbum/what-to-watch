@@ -1,9 +1,10 @@
 import { useAppSelector } from '../../hooks';
+import { getComments } from '../../store/app-data/selectors';
 import FilmComment from '../film-comment/film-comment';
 
 
 function FilmReviews(): JSX.Element {
-  const comments = useAppSelector((state) => state.comments);
+  const comments = useAppSelector(getComments);
 
   if (!comments.length) {
     return (<p style={{fontWeight: 'bold'}}>No comments yet!</p>);

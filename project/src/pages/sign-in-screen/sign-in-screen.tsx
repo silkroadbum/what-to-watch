@@ -8,11 +8,12 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function SignInScreen(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authorizationStatus = useAppSelector((store) => store.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

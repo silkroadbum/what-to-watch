@@ -14,7 +14,7 @@ export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchFilms',
+  'fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Film[]>(APIRoute.Films);
     return data;
@@ -26,7 +26,7 @@ export const fetchFilm = createAsyncThunk<Film, FilmId, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchFilm',
+  'fetchFilm',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
     return data;
@@ -38,7 +38,7 @@ export const fetchSimilarFilms = createAsyncThunk<Film[], FilmId, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchSimilarFilms',
+  'fetchSimilarFilms',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
     return data;
@@ -50,7 +50,7 @@ export const fetchComments = createAsyncThunk<Comments, FilmId, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchComments',
+  'fetchComments',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Comments>(`${APIRoute.Comments}/${id}`);
     return data;
@@ -62,7 +62,7 @@ export const fetchPromoAction = createAsyncThunk<Film, undefined, {
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchFilms',
+  'fetchPromoFilm',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Film>(APIRoute.Promo);
     return data;
@@ -109,7 +109,7 @@ export const addComment = createAsyncThunk<Comments, CommentData, {
   state: State,
   extra: AxiosInstance
 }>(
-  'user/addComment',
+  'addComment',
   async ({id , comment, rating}, {dispatch, extra: api}) => {
     const {data} = await api.post<Comments>(`${APIRoute.Comments}/${id}`, {comment, rating});
     return data;

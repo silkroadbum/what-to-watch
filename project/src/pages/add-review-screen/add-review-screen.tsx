@@ -5,9 +5,10 @@ import Logo from '../../components/logo/logo';
 import CommentForm from '../../components/comment-form/comment-form';
 import { useAppSelector } from '../../hooks';
 import UserBlock from '../../components/user-block/user-block';
+import { getFilms } from '../../store/app-data/selectors';
 
 function AddReviewScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector(getFilms);
   const {id} = useParams();
 
   const findedFilm = films.find((film) => film.id === Number(id));

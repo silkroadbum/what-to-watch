@@ -13,9 +13,9 @@ export type AppData = {
   film: Film | null;
   activeGenre: string;
   isDataLoaded: boolean;
-  error: string | null;
   promoFilm: Film | null;
   comments: Comments;
+  error: string | null
 }
 
 export type State = ReturnType<typeof store.getState>;

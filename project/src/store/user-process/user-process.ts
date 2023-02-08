@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import { NameSpace, AuthorizationStatus } from '../../const';
 import { UserProcess } from '../../types/state';
-import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
+import {checkAuthAction, loginAction, logoutAction} from '../api-actions';
 
 const initialState: UserProcess = {
-  authorizationStatus: AuthorizationStatus.Unknown
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const userProcess = createSlice({
@@ -25,7 +25,7 @@ export const userProcess = createSlice({
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(logoutAction.fulfilled, (state) => {
+      .addCase(logoutAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });
   }

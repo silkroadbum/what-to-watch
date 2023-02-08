@@ -10,8 +10,8 @@ const initialState: AppData = {
   comments: [],
   film: null,
   isDataLoaded: false,
-  error: null,
-  promoFilm: null
+  promoFilm: null,
+  error: null
 };
 
 export const appData = createSlice({
@@ -38,13 +38,13 @@ export const appData = createSlice({
         state.film = action.payload;
       })
       .addCase(fetchFilm.rejected, (state) => {
-        state.error = 'Не удалось получить информация о фильме с сервера';
+        state.error = 'Не удалось загрузить информация о фильме с сервера';
       })
       .addCase(fetchSimilarFilms.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
       })
       .addCase(fetchSimilarFilms.rejected, (state) => {
-        state.error = 'Не удалось получить похожие фильмы с сервера';
+        state.error = 'Не удалось загрузить похожие фильмы с сервера';
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
@@ -56,13 +56,15 @@ export const appData = createSlice({
         state.comments = action.payload;
       })
       .addCase(addComment.rejected, (state) => {
-        state.error = 'Не удалось отправить комментарий';
+        state.error = 'Не отправить комментарий';
       })
       .addCase(fetchPromoAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
       })
       .addCase(fetchPromoAction.rejected, (state) => {
-        state.error = 'Не удалось загрузить информация о промо фильме';
+        state.error = 'Не удалось получить информация о промо фильме';
       });
   }
 });
+
+export const {changeGenre} = appData.actions;

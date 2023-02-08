@@ -11,19 +11,20 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { Comment } from '../../types/comments';
 import { AppRoute } from '../../const';
+import { getLoadedDataStatus } from '../../store/app-data/selectors';
+import { isCheckedAuth } from '../../check';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
-type AppScreenProps = {
-  comments: Comment[];
-}
+function App(): JSX.Element {
+  const isDataLoaded = useAppSelector(getLoadedDataStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-function App({comments}: AppScreenProps): JSX.Element {
-  const {isDataLoaded} = useAppSelector((state) => state);
-
-  if (isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
     return (
-      <LoadingScreen />
+      <BrowserRouter>
+        <LoadingScreen />
+      </BrowserRouter>
     );
   }
 
@@ -41,7 +42,7 @@ function App({comments}: AppScreenProps): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Film} element={<FilmScreen comments={comments}/>}/>
+          <Route path={AppRoute.Film} element={<FilmScreen/>}/>
           <Route
             path={AppRoute.AddReview}
             element={

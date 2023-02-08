@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
-
-import { comments } from './mocks/comments';
 import App from './components/app/app';
-import { checkAuthAction, fetchFilmsAction, fetchPromoAction } from './store/api-actions';
+import { fetchFilmsAction, fetchPromoAction, checkAuthAction } from './store/api-actions';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer/>
-      <App comments={comments}/>
+      <App/>
     </Provider>
   </React.StrictMode>,
 );
