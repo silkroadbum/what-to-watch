@@ -39,3 +39,8 @@ export enum APIRoute {
   Promo = '/promo',
   Comments = '/comments'
 }
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+}
