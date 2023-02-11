@@ -20,7 +20,7 @@ function FavoriteButton({isFavorite, id}: FavoriteButtonProps) {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.Login);
     }
-    store.dispatch(addToFavorite({filmId: Number(id), status: Number(!isFavorite)}));
+    store.dispatch(addToFavorite({filmId: Number(index), status: Number(!isFavorite)}));
   };
 
   return (
@@ -29,7 +29,7 @@ function FavoriteButton({isFavorite, id}: FavoriteButtonProps) {
         <use xlinkHref={isFavorite ? '#in-list' : '#add'}></use>
       </svg>
       <span>My list</span>
-      {favoriteFilms.length > 0 ? <span className="film-card__count">{favoriteFilms.length}</span> : ''}
+      {authorizationStatus === AuthorizationStatus.Auth && favoriteFilms.length > 0 ? <span className="film-card__count">{favoriteFilms.length}</span> : ''}
     </button>
   );
 }

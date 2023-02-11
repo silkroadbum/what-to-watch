@@ -36,6 +36,9 @@ export const appData = createSlice({
       .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
         state.favoriteFilms = action.payload;
       })
+      .addCase(fetchFavoriteFilms.rejected, (state) => {
+        state.error = 'Не удалось получить доступ к избранным фильмам, авторизуйтесь!';
+      })
       .addCase(fetchFilmsAction.rejected, (state) => {
         state.error = 'Не удалось загрузить фильмы с сервера';
       })

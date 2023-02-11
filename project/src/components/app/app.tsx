@@ -11,10 +11,12 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { getLoadedDataStatus } from '../../store/app-data/selectors';
 import { isCheckedAuth } from '../../check';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { store } from '../../store';
+import { fetchFavoriteFilms } from '../../store/api-actions';
 
 function App(): JSX.Element {
   const isDataLoaded = useAppSelector(getLoadedDataStatus);
@@ -26,6 +28,10 @@ function App(): JSX.Element {
         <LoadingScreen />
       </BrowserRouter>
     );
+  }
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    store.dispatch(fetchFavoriteFilms());
   }
 
   return (
