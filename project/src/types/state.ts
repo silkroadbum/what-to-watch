@@ -15,7 +15,6 @@ export type AppData = {
   isDataLoaded: boolean;
   promoFilm: Film | null;
   comments: Comments;
-  error: string | null,
   favoriteFilms: Film[]
 }
 

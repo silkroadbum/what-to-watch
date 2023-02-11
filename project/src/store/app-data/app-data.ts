@@ -12,7 +12,6 @@ const initialState: AppData = {
   film: null,
   isDataLoaded: false,
   promoFilm: null,
-  error: null,
   favoriteFilms: []
 };
 
@@ -36,35 +35,17 @@ export const appData = createSlice({
       .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
         state.favoriteFilms = action.payload;
       })
-      .addCase(fetchFavoriteFilms.rejected, (state) => {
-        state.error = 'Не удалось получить доступ к избранным фильмам, авторизуйтесь!';
-      })
-      .addCase(fetchFilmsAction.rejected, (state) => {
-        state.error = 'Не удалось загрузить фильмы с сервера';
-      })
       .addCase(fetchFilm.fulfilled, (state, action) => {
         state.film = action.payload;
-      })
-      .addCase(fetchFilm.rejected, (state) => {
-        state.error = 'Не удалось загрузить информация о фильме с сервера';
       })
       .addCase(fetchSimilarFilms.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
       })
-      .addCase(fetchSimilarFilms.rejected, (state) => {
-        state.error = 'Не удалось загрузить похожие фильмы с сервера';
-      })
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
       })
-      .addCase(fetchComments.rejected, (state) => {
-        state.error = 'Не удалось загрузить комментарии с сервера';
-      })
       .addCase(addComment.fulfilled, (state, action) => {
         state.comments = action.payload;
-      })
-      .addCase(addComment.rejected, (state) => {
-        state.error = 'Не отправить комментарий';
       })
       .addCase(addToFavorite.fulfilled, (state, action) => {
         state.similarFilms = updateFilms(state.similarFilms, action.payload);
@@ -75,14 +56,8 @@ export const appData = createSlice({
           ? state.favoriteFilms = addFromFavoriteFilms(state.favoriteFilms, action.payload)
           : state.favoriteFilms = removeFromFavoriteFilms(state.favoriteFilms, action.payload);
       })
-      .addCase(addToFavorite.rejected, (state) => {
-        state.error = 'Не удалось добавить фильм в избранное!';
-      })
       .addCase(fetchPromoAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
-      })
-      .addCase(fetchPromoAction.rejected, (state) => {
-        state.error = 'Не удалось получить информация о промо фильме';
       });
   }
 });
