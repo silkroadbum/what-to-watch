@@ -1,5 +1,5 @@
 import { Film } from '../../types/film';
-import { getMark } from '../../utils/getMark';
+import { getMark } from '../../utils/get-mark';
 
 type FilmOverviewProps = {
   film: Film | null;

@@ -10,3 +10,4 @@ export const getSimilarFilms = (state: State): Film[] => state[NameSpace.Data].s
 export const getActiveGenre = (state: State): string => state[NameSpace.Data].activeGenre;
 export const getComments = (state: State): Comments => state[NameSpace.Data].comments;
 export const getLoadedDataStatus = (state: State): boolean => state[NameSpace.Data].isDataLoaded;
+export const getFavoriteFilms = (state: State): Film[] => state[NameSpace.Data].favoriteFilms;

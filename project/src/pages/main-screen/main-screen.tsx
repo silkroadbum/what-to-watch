@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
 
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
@@ -65,13 +66,7 @@ function MainScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <FavoriteButton isFavorite={promoFilm?.isFavorite} id={promoFilm?.id}/>
               </div>
             </div>
           </div>

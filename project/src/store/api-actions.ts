@@ -127,3 +127,15 @@ export const addComment = createAsyncThunk<Comments, CommentData, {
     return data;
   },
 );
+
+export const addToFavorite = createAsyncThunk<Film, {filmId: number, status: number}, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'addToFavorite',
+  async ({filmId, status}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Film>(`${APIRoute.Faforite}/${filmId}/${status}`, {filmId, status});
+    return data;
+  },
+);
