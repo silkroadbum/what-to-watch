@@ -15,7 +15,8 @@ export type AppData = {
   isDataLoaded: boolean;
   promoFilm: Film | null;
   comments: Comments;
-  error: string | null
+  error: string | null,
+  favoriteFilms: Film[]
 }
 
 export type State = ReturnType<typeof store.getState>;

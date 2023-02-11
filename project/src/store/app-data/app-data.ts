@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { AppData } from '../../types/state';
-import { addComment, fetchComments, fetchFilm, fetchFilmsAction, fetchPromoAction, fetchSimilarFilms } from '../api-actions';
+import { addComment, fetchComments, fetchFavoriteFilms, fetchFilm, fetchFilmsAction, fetchPromoAction, fetchSimilarFilms } from '../api-actions';
 
 const initialState: AppData = {
   activeGenre: 'All genres',
@@ -11,7 +11,8 @@ const initialState: AppData = {
   film: null,
   isDataLoaded: false,
   promoFilm: null,
-  error: null
+  error: null,
+  favoriteFilms: []
 };
 
 export const appData = createSlice({
@@ -30,6 +31,9 @@ export const appData = createSlice({
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films = action.payload;
         state.isDataLoaded = false;
+      })
+      .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
       })
       .addCase(fetchFilmsAction.rejected, (state) => {
         state.error = 'Не удалось загрузить фильмы с сервера';
